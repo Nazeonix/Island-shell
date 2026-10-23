@@ -1,0 +1,20 @@
+singleton Theme 1.0 Theme.qml
+singleton Wallpaper 1.0 Wallpaper.qml
+Island 1.0 Island.qml
+WifiBadge 1.0 WifiBadge.qml
+QuickTile 1.0 QuickTile.qml
+PillSlider 1.0 PillSlider.qml
+VolumeBadge 1.0 VolumeBadge.qml
+NotchPanel 1.0 NotchPanel.qml
+Launcher 1.0 Launcher.qml
+Osd 1.0 Osd.qml
+Switcher 1.0 Switcher.qml
+ThemePanel 1.0 ThemePanel.qml
+WallpaperPicker 1.0 WallpaperPicker.qml
+Clipboard 1.0 Clipboard.qml
+Powermenu 1.0 Powermenu.qml
+NotificationService 1.0 NotificationService.qml
+NotificationToasts 1.0 NotificationToasts.qml
+NotificationCenter 1.0 NotificationCenter.qml
+NotificationCard 1.0 NotificationCard.qml
+WallpaperLayer 1.0 WallpaperLayer.qml
