@@ -3,6 +3,9 @@ singleton Wallpaper 1.0 Wallpaper.qml
 Island 1.0 Island.qml
 WifiBadge 1.0 WifiBadge.qml
 QuickTile 1.0 QuickTile.qml
+ToggleSwitch 1.0 ToggleSwitch.qml
+WifiPanel 1.0 WifiPanel.qml
+BluetoothPanel 1.0 BluetoothPanel.qml
 PillSlider 1.0 PillSlider.qml
 VolumeBadge 1.0 VolumeBadge.qml
 NotchPanel 1.0 NotchPanel.qml

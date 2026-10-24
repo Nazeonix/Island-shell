@@ -173,6 +173,7 @@ Item {
 
     // Volume / brightness changes show the OSD (Osd.qml) unless the island is already open
     signal osdShow(string kind)
+    signal openMenu(string which)    // "wifi" | "bluetooth": shell.qml opens the matching panel
     function notifyOsd(kind) { if (pinned || mediaOpen) return; osdShow(kind); }
 
     function volStep(d) {   // d in 0..1 units
@@ -734,6 +735,8 @@ Item {
             title: "Wi-Fi"
             subtitle: wifiBadge.connected ? (wifiBadge.ssid || "Connected") : "Not connected"
             active: wifiBadge.connected
+            chevron: true
+            onMenuRequested: root.openMenu("wifi")
             onClicked: Quickshell.execDetached(["nmcli", "radio", "wifi", wifiBadge.connected ? "off" : "on"])
         }
         QuickTile {
@@ -743,6 +746,8 @@ Item {
             title: "Bluetooth"
             subtitle: root.btSub
             active: root.btOn
+            chevron: true
+            onMenuRequested: root.openMenu("bluetooth")
             onClicked: { if (root.btAdapter) root.btAdapter.enabled = !root.btAdapter.enabled; }
         }
 

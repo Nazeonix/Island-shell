@@ -41,6 +41,10 @@ ShellRoot {
             id: island
             notifService: notifs
             onOsdShow: (kind) => osd.show(kind)
+            onOpenMenu: (which) => {
+                island.close();
+                if (which === "wifi") wifiPanel.show(); else btPanel.show();
+            }
             x: (win.width - width) / 2
             y: 0   // notch: flush with the top edge
         }
@@ -122,6 +126,8 @@ ShellRoot {
     Launcher { id: launcher }
     ThemePanel {}
     WallpaperPicker {}
+    WifiPanel { id: wifiPanel }
+    BluetoothPanel { id: btPanel }
     Clipboard {}
     Powermenu {}
 }

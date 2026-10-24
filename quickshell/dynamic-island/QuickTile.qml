@@ -7,7 +7,9 @@ Rectangle {
     property string title: ""
     property string subtitle: ""
     property bool active: false
+    property bool chevron: false      // show a > that opens the tile's menu
     signal clicked()
+    signal menuRequested()
     radius: height / 2
     color: tma.containsMouse ? Qt.lighter(Theme.surface, 1.15) : Theme.surface
     Behavior on color { ColorAnimation { duration: 120 } }
@@ -23,7 +25,7 @@ Rectangle {
             anchors.centerIn: parent
             width: 20; height: 20
             antialiasing: true
-            property color col: tile.active ? Theme.notch : Theme.foreground
+            property color col: tile.active ? Theme.onAccent : Theme.foreground
             onColChanged: requestPaint()
             onPaint: {
                 const c = getContext("2d");
@@ -48,7 +50,7 @@ Rectangle {
         anchors.left: tdot.right
         anchors.leftMargin: 11
         anchors.right: parent.right
-        anchors.rightMargin: 14
+        anchors.rightMargin: tile.chevron ? 40 : 14
         anchors.verticalCenter: parent.verticalCenter
         spacing: 1
         Text {
@@ -73,5 +75,33 @@ Rectangle {
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
         onClicked: tile.clicked()
+    }
+
+    // > button on the right: opens the menu (Wi-Fi networks, Bluetooth devices)
+    Canvas {
+        visible: tile.chevron
+        x: tile.width - 28
+        anchors.verticalCenter: parent.verticalCenter
+        width: 10; height: 16
+        antialiasing: true
+        property color col: cma.containsMouse ? Theme.foreground : Theme.foregroundMuted
+        onColChanged: requestPaint()
+        onPaint: {
+            const c = getContext("2d");
+            c.reset();
+            c.strokeStyle = col;
+            c.lineWidth = 1.8; c.lineCap = "round"; c.lineJoin = "round";
+            c.beginPath(); c.moveTo(2, 2); c.lineTo(8, 8); c.lineTo(2, 14); c.stroke();
+        }
+    }
+    MouseArea {
+        id: cma
+        visible: tile.chevron
+        anchors.right: parent.right
+        width: 46
+        height: parent.height
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
+        onClicked: tile.menuRequested()
     }
 }
